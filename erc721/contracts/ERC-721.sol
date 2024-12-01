@@ -3,7 +3,7 @@
 pragma solidity 0.8.27;
 
 import "./IERC-721_metadata.sol";
-import "./ERC-721_receiver.sol";
+import "./IERC-721_receiver.sol";
 import "./ERC-165.sol";
 import "./Strings.sol";
 
@@ -69,11 +69,13 @@ contract ERC721 is ERC165, IERC721, IERC721Metadata {
         return _operatorApprovals[owner][operator];
     }
 
-    function tokenURI(uint256 tokenId) public _requireMinted(tokenId) returns(string memory) {
-        string memory baseURI = _baseURI();
+    // function tokenURI(uint256 tokenId) public _requireMinted(tokenId) returns(string memory) {
+    //     string memory baseURI = _baseURI();
 
-        return bytes(baseURI).length > 0 ? string(abi.encodePacked(baseURI, tokenId.toString())) : "";
-    }
+    //     return bytes(baseURI).length > 0 ? string(abi.encodePacked(baseURI, tokenId.toString())) : "";
+    // }
+
+    function tokenURI(uint256 _tokenId) virtual public view returns (string memory) {}
 
     function supportsInterface(bytes4 interfaceId) override public pure returns(bool) {
         return interfaceId == type(IERC721).interfaceId || super.supportsInterface(interfaceId);

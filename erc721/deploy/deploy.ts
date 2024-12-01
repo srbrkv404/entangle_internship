@@ -1,7 +1,7 @@
 const hre = require("hardhat");
 
 async function main_() {
-    const tokenURI = "/ipfs/QmTMo6DFrfzKGGbkYsyMZRe16jBJcCcV72ZJHcM3a3Z2w7/";
+    const tokenURI = "https://gateway.pinata.cloud/ipfs/QmTMo6DFrfzKGGbkYsyMZRe16jBJcCcV72ZJHcM3a3Z2w7/";
 
     const Nft = await hre.ethers.getContractFactory("TestNFT");
     const nft = await Nft.deploy(tokenURI);

@@ -4,27 +4,22 @@ const getContract_token = require('./getContract.ts');
 
 config();
 
-async function mint() {
+async function getURI() {
     const contract = await getContract_token();
 
     try {
         const [acc1, acc2] = await ethers.getSigners();
 
-        let tokenId = 1;
+        const tx = await contract.tokenURI(1);
 
-        console.log(`Minting ${tokenId} nft to ${acc1.address}...`);
-
-        const tx = await contract.mintNFT(acc1.address, tokenId);
-
-        await tx.wait();
-        console.log(`Transaction finished: ${tx.hash}`);
+        console.log(`Transaction finished: ${tx}`);
     } catch (error) {
         console.error(`Error sending transaction: ${error}`);
     }
 
 }
 
-mint()
+getURI()
     .then(() => process.exit(0))
     .catch((error) => {
         console.error(error);
